@@ -1,0 +1,150 @@
+{
+	"info": {
+		"version": "3.6.6",
+		"date": 20191205,
+		"description": "This is meta data install script with initialization information. \nIf you already installed on this server, then backup before click next button."
+	},
+	"modules": [
+		{
+			"name": "demo users",
+			"desc": "basic application users",
+			"steps": [
+				{
+					"type": "sql",
+					"name": "demo_users.msql",
+					"targetdb": "meta"
+				}
+			]
+		},
+		{
+			"name": "sample_northwind",
+			"desc": "Northwind sample database",
+			"steps": [
+				{
+					"type": "sql",
+					"name": "sample_sch.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat1.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat2.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat3.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat4.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat5.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat6.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat7.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat8.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat9.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat10.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat11.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_dat12.msql"
+				},
+				{
+					"type": "sql",
+					"name": "sample_idx.msql"
+				}
+			]
+		},
+		{
+			"name": "sample_quality",
+			"desc": "Semiconductor Mfg Quality",
+			"steps": [
+				{
+					"type": "sql",
+					"name": "mfg_quality.msql"
+				}
+			]
+		},
+		{
+			"name": "sample_reports",
+			"desc": "Northwind sample report",
+			"steps": [
+				{
+					"type": "meta",
+					"name": "northwind.bku"
+				}
+			]
+		},
+		{
+			"name": "sample_qa",
+			"desc": "Six Sigma Examples",
+			"steps": [
+				{
+					"type": "meta",
+					"name": "sixsigma.bku"
+				}
+			]
+		},
+		{
+			"name": "sample_fb",
+			"desc": "Formbuilder Examples",
+			"steps": [
+				{
+					"type": "sql",
+					"name": "formbuilder.msql"
+				},
+				{
+					"type": "meta",
+					"name": "retirement_planning.bku"
+				}
+			]
+		}
+	],
+	"meta_data": [
+		{
+			"type": "sql",
+			"name": "meta_sch.msql"
+		},
+		{
+			"type": "sql",
+			"name": "meta_key.msql"
+		},
+		{
+			"type": "sql",
+			"name": "meta_dat1.msql"
+		},
+		{
+			"type": "sql",
+			"name": "meta_dat2.msql"
+		}
+	],
+	"meta_postjob": [
+		{
+			"type": "sql",
+			"name": "meta_fnl.msql"
+		}
+	]
+}

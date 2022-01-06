@@ -1,0 +1,157 @@
+############################################################################
+# database general settings
+############################################################################
+[META_DATABASE]
+connection_method		= "tomcat_dbcp" 
+connectionpool			= true
+autocommit				= true 
+maxpoolsize				= 20 
+monitor					= false 
+
+# data base connection information only system applies first matching values
+# password is automatically encrypted after server startup
+databasetype="mysql"
+jdbcdriver="com.mysql.jdbc.Driver" 
+jdbcurl="jdbc:mysql://localhost/bo_dev_01" 
+userid="root" 
+password = "{ENC}xLHbTAg/Rmc="
+validatesql="select 1"
+
+#automatically ignores bellow. delete settings after leaving top node
+##-------------------------------------------------------------------------- 
+databasetype="oracle"
+jdbcdriver="oracle.jdbc.OracleDriver"
+jdbcurl="jdbc:oracle:thin:@localhost:1521:orcl"
+userid=
+password=
+schemaname=
+validatesql="select 1 from dual"
+
+databasetype="apacheembd"
+jdbcdriver="org.apache.derby.jdbc.EmbeddedDriver"
+jdbcurl="jdbc:derby:c:/workspace/metadata;create=true"
+userid=
+password=
+schemaname=
+validatesql="select 1 from sysibm.sysdummy1"
+
+databasetype="oracle"
+jdbcdriver="oracle.jdbc.OracleDriver"
+jdbcurl="jdbc:oracle:thin:@localhost:1521:orcl"
+userid=
+password=
+schemaname=
+validatesql="select 1 from dual"
+
+databasetype="postgresql"
+jdbcdriver="org.postgresql.Driver"
+jdbcurl="jdbc:postgresql://localhost:5432/dbname"
+userid=
+password=
+schemaname=
+validatesql="select 1"
+
+## Persistent data storage settings
+persist.enabled = true
+persist.databasetype = "h2"
+persist.jdbcdriver = "org.h2.Driver"
+persist.jdbcurl = "jdbc:h2:~/amplix;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE"
+persist.userid = "sa"
+persist.password=""
+persist.schemaname = 
+persist.validatesql = "select 1"
+##--------------------------------------------------------------------------
+
+############################################################################
+# Application specific settings
+############################################################################
+[APPLICATION]
+application.mainpage.mdi 					= "../launcher/analytics.jsp"
+application.mainpage.dashboard 				= "../launcher/dashboard.jsp"
+application.mainpage.viewer 				= "../launcher/viewer.jsp"
+
+application.disk_mirror.enabled 				= true
+application.disk_mirror.location 			= meta_files
+application.disk_mirror.filename 			= uid
+# new parameter for limit post service repetitive attack
+# application.post_service.limit_count		= 100
+application.pdf_codepage.codepage 			= Identity-H
+application.excel_output.type				= xlsx
+application.excel_output.default_font		= Verdana
+application.scheduler.server_type			= internal
+application.scheduler.engine_type			= quartz
+
+#application.python.path						= "c:/ProgramData/Anaconda3/Scripts"
+# ** python connnection method
+# export    : execute shell script
+# websocket : connect through websocket
+application.python.method					= "websocket"
+application.python.path						= "c:\Program Files (x86)\Microsoft Visual Studio\Shared\Anaconda3_64\Scripts\"
+# python connect through websocket options
+application.python.url						= "http://localhost:8889/"
+application.python.password					= "test1"
+
+application.security.lock_login				= snooze
+application.security.snooze_time				= 2
+application.tenant_post_proc.post_class		= com.amplix.external.cloud.CloudAuthService
+
+application.h2.jdbcurl						= ""
+application.h2.username						= ""
+application.h2.password 					= ""
+
+#^                 # start-of-string
+#(?=.*[0-9])       # a digit must occur at least once
+#(?=.*[a-z])       # a lower case letter must occur at least once
+#(?=.*[A-Z])       # an upper case letter must occur at least once
+#(?=.*[@#$%^&+=])  # a special character must occur at least once
+#(?=\S+$)          # no whitespace allowed in the entire string
+#.{8,}             # anything, at least eight places though
+#$                 # end-of-string
+# strong password
+# application.security.password_rule			= ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$
+# median password 
+# application.security.password_rule			= ^(?=.*[0-9])(?=.*[a-z])(?=\S+$).{8,}$
+# weak password
+application.security.password_rule			= ^(?=\S+$).{8,}$
+application.security.rock_wong_password		= 0
+
+# use calculator for 1MB = 1048576 multiply with your file size (default 30 mb)
+# 30 MB => 31457280
+# 50 MB =>  52428800
+# 100 MB => 104857600
+# 200 MB => 209715200
+# 250 MB => 262144000
+application.fileupload.maxfileupload 		= 3145728
+application.fileupload.maxfileupload_bulk 	= 52428800
+
+############################################################################
+# Scheduler server information
+############################################################################
+[SCHEDULE_SERVER]
+acceptcount			= 10 
+defaultlocale		= "en_US" 
+idletimeout			= 0 
+ignore_error		= false 
+maxthreads			= 30
+minthreads			= 0 
+port				= 4504 
+serverhost			= 127.0.0.1 
+servername			= "mecsvr" 
+session_expire		= 600
+defaultdateformat	= "''yy-MM-dd hh:mm:ss a"
+
+############################################################################
+# Apache embedded boot server configuration
+############################################################################
+[SERVER_BOOT_CONFIG]
+server_port			= 8280
+server_protocol 	= HTTP
+
+https_keyalias 		= keyAlias
+https_keystore_pass = "changeit"
+https_keystore_file = "keystore.jks"
+https_ssl_protocol 	= TLS
+context_root 		= "/"
+
+shutdown_port		= 6680
+

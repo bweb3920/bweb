@@ -1,0 +1,74 @@
+{
+	"meta_type": "email_templates",
+	"parameters": {
+		"DOMAIN": "amplixbi.com",
+		"COPY_URL": "https://www.amplixbi.com",
+		"LOGIN_URL": "launcher/login.jsp",
+		"ANALYTICS_URL": "launcher/analytics.jsp"
+	},
+	"data": [
+		{
+			"name": "blank",
+			"title": "[amplix] {TITLE}",
+			"message": {
+				"type": "html",
+				"text": "\n\n{MESSAGE}.\n",
+				"html": "blank.html"
+			}
+		},
+		{
+			"name": "reset_password",
+			"title": "[amplix] Password reset notification",
+			"message": {
+				"type": "html",
+				"text": "\n\nYour password is reset.\n",
+				"html": "reset_password.html"
+			}
+		},
+		{
+			"name": "user_register",
+			"title": "[amplix] Your account is created.",
+			"message": {
+				"type": "html",
+				"text": "\nYour account is created by administrator.\nPlease login and change your password to secure use of the amplix!\n\nYour temporary password is : {PASSWORD}",
+				"html": "user_register.html"
+			}
+		},
+		{
+			"name": "user_update",
+			"title": "[amplix] Your account is modified.",
+			"message": {
+				"type": "html",
+				"text": "\nYour account is modified by {USERNAME}.\n\nPlease login and validate the change!\n\n$PASSWORD$\n\nYour temporary password is : {PASSWORD}$PASSWORD$",
+				"html": "user_update.html"
+			}
+		},
+		{
+			"name": "schedule_notification",
+			"title": "[amplix] Your schedule is processed.",
+			"message": {
+				"type": "html",
+				"text": "\nYour schedule is processed by {USERNAME}.\n\nPlease login and view pages!\n\n{URL}launcher/navi.jsp?mval=1&slink={SCHEDULE_LINK}",
+				"html": "schedule_notification.html"
+			}
+		},
+		{
+			"name": "share_item",
+			"title": "[amplix] Share Reports.",
+			"message": {
+				"type": "html",
+				"text": "\nYou get shared report by user {USERNAME}.\n\nPlease login and view pages!\n\n{URL}launcher/navi.jsp?mval=1&slink={ITEM_UID}\n\nLocation : {ITEM_PATH}\n\n{linkurl}",
+				"html": "share_item.html"
+			}
+		},
+		{
+			"name": "password_reset_key",
+			"title": "[amplix] Request processing for account reset.",
+			"message": {
+				"type": "html",
+				"text": "\nIn regards your request for password reset to enter Analysis framework, \nthe following is the validation key to confirm your request.\n\nCopy the following validation key code on the clipboard and paste it as validate key.\n\nValidation key : {VALIDATE_CODE}",
+				"html": "password_validate.html"
+			}
+		}
+	]
+}

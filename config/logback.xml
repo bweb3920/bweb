@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="true">
+	<contextName>mplix</contextName>
+	<appender name="FILE" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<key>logFileName</key>
+			<defaultValue>amplix.out</defaultValue>
+		</discriminator>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${LOG_LEVEL}</level>
+		</filter>
+		<sift>
+			<appender name="FILE-${logFileName}"
+				class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<file>${app_home}/logs/${logFileName}.log</file>
+				<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+					<charset>UTF-8</charset>
+					<Pattern>
+						%d{yyyy-MM-dd HH:mm:ss} %level %logger{35} - %msg%n
+					</Pattern>
+				</encoder>
+				<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+					<!-- daily rollover -->
+					<fileNamePattern>${app_home}/logs/${logFileName}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+					<!-- or whenever the file size reaches 50MB -->
+					<maxFileSize>10MB</maxFileSize>
+					<totalSizeCap>10GB</totalSizeCap>
+					<!-- keep 30 days' worth of history -->
+					<maxHistory>30</maxHistory>
+				</rollingPolicy>
+			</appender>
+		</sift>
+	</appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %level %msg%n </Pattern>
+		</layout>
+		<target>System.err</target>
+	</appender>
+	<appender name="FILE_JOB" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<key>run_id</key>
+			<defaultValue>empty</defaultValue>
+		</discriminator>
+		<filter class="com.amplix.scheduler.RunIdFilter">
+		</filter>
+		<sift>
+			<appender name="FILE_JOB_${run_id}" class="ch.qos.logback.core.FileAppender">
+				<file>${app_home}/logs/job_${run_id}.log</file>
+				<encoder>
+					<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger{35} - %msg%n </Pattern>
+				</encoder>
+			</appender>
+		</sift>
+	</appender>
+	<!-- example for logging to database table -->
+	<!--
+	<appender name="DB" class="org.apache.log4j.jdbc.JDBCAppender">
+		<param name="driver" value="com.mysql.jdbc.Driver"/>
+		<param name="url" value="jdbc:mysql://localhost/DBNAME"/>
+		<param name="user" value="user_id"/>
+		<param name="password" value="password"/>
+		<param name="sql" value="INSERT INTO igcserverlog (log_level, log_date, log_host, log_user, log_msg) VALUES ('%x','%d','%C','%p','%m')"/>
+
+		<layout class="org.apache.log4j.PatternLayout">
+		</layout>
+	</appender>
+	-->
+	<!-- example for smtp email notification -->
+	<!--
+	<appender name="EMAIL_NOTI" class="ch.qos.logback.classic.net.SMTPAppender">
+		<smtpHost>smtp.company.com</smtpHost>
+		<smtpPort>25</smtpPort>
+		<username>USERNAME</username>
+		<password>PASSWORD</password>
+		<to>TO_EMAIL</to>
+		<to>RO_ANOTHER_EMAIL</to>
+		<from>FROM_EMAIL</from>
+		<subject>ERROR NOTI: %logger{20} - %m</subject>
+		<layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+	</appender>
+	<logger name="com.amplix" level="error" additivity="false">
+		<appender-ref ref="EMAIL_NOTI"/>
+	</logger>
+	-->
+	<appender name="FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE"/>
+	</appender>
+	
+	<logger name="org.apache" level="WARN" />
+    <logger name="httpclient" level="WARN" />
+     
+	<!-- TRACE, DEBUG, INFO, WARN and ERROR -->
+	<root level="debug">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="FILE_ASYNC"/>
+		<appender-ref ref="FILE_JOB"/>
+	</root>
+</configuration>

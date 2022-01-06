@@ -1,0 +1,93 @@
+{
+  "meta_type" : "sys_config",
+  "objinfo" : { },
+  "type" : "Unknown",
+  "writable" : false,
+  "manage" : false,
+  "is_sub" : false,
+  "attributes" : { },
+  "sys_loglevel" : "INFO",
+  "sch_method" : "internal",
+  "excel_type" : "xlsx",
+  "meta_enable_file" : false,
+  "meta_files" : "meta_files",
+  "meta_name_rule" : "uid",
+  "python_method" : "websocket",
+  "python_exec" : "",
+  "python_jupyter" : "http://localhost:8888/",
+  "python_need_auth" : false,
+  "python_username" : "",
+  "sec_enable_snooze" : true,
+  "sec_post_limit_count" : 1000,
+  "sec_snooze_time" : 5,
+  "sec_tenant_post_proc" : "",
+  "sec_password_rule" : "^.{6,}$",
+  "maxfileupload" : 30,
+  "maxfileuploadbulk" : 50,
+  "sec_wrong_passwd" : 5,
+  "sso_modules" : [ {
+    "name" : "dbsync",
+    "desc" : "Amplix Guest Auth",
+    "enabled" : true,
+    "authentication" : {
+      "options" : {
+        "class" : "com.amplix.sso.amplix.GuestUserAuth"
+      },
+      "parameters" : [ ]
+    },
+    "authorization" : {
+      "options" : {
+        "class" : "com.amplix.sso.amplix.GuestUserAuth"
+      },
+      "parameters" : [ ]
+    }
+  }, {
+    "name" : "foodmart",
+    "desc" : "Foodmart Guest Auth",
+    "enabled" : true,
+    "authentication" : {
+      "options" : {
+        "class" : "com.amplix.sso.amplix.FoodmartUserAuth"
+      },
+      "parameters" : [ ]
+    },
+    "authorization" : {
+      "options" : {
+        "class" : "com.amplix.sso.amplix.FoodmartUserAuth"
+      },
+      "parameters" : [ ]
+    }
+  }, {
+    "name" : "oracle_ebs",
+    "desc" : "Oracle EBS",
+    "enabled" : true,
+    "authentication" : {
+      "options" : {
+        "class" : "com.amplix.sso.ebs.EBSAuth"
+      },
+      "parameters" : [ ]
+    },
+    "authorization" : {
+      "options" : {
+        "class" : "com.amplix.sso.ebs.EBSAuth"
+      },
+      "parameters" : [ ]
+    }
+  }, {
+    "name" : "apache_ldap",
+    "desc" : "Apache LDAP",
+    "enabled" : true,
+    "authentication" : {
+      "options" : {
+        "class" : " com.amplix.sso.ibk.UserDBSync"
+      },
+      "parameters" : [ ]
+    },
+    "authorization" : {
+      "options" : {
+        "class" : " com.amplix.sso.ibk.UserDBSync"
+      },
+      "parameters" : [ ]
+    }
+  } ]
+}
